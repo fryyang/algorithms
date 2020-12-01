@@ -70,7 +70,7 @@ public class CollectionRecover {
         }
         System.out.println(Arrays.toString(allCityCollection.toArray()));
         System.out.println(Arrays.toString(selectList.toArray()));
-
+        System.out.println(Arrays.toString(selectList.toArray()));
 
 
     }
