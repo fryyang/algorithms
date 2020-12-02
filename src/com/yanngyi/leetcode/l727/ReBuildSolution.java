@@ -1,4 +1,4 @@
-package com.yanngyi.l727rebuildstring;
+package com.yanngyi.leetcode.l727;
 
 import java.util.PriorityQueue;
 

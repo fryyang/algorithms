@@ -1,4 +1,4 @@
-package com.yanngyi.sgreed;
+package com.yanngyi.sxt.sgreed;
 
 import java.util.*;
 
