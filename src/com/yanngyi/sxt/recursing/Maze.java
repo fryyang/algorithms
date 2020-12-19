@@ -22,12 +22,20 @@ public class Maze {
         }
         map[1][3] = 1;
         map[2][3] = 1;
+        list(map);
+        boolean way = getWay(map, 1, 1);
+        System.out.println("结果");
+        list(map);
+    }
+
+    public static void list(int[][] map) {
         for (int i=0; i<7; i++) {
             for (int j=0; j<8; j++) {
                 System.out.print(map[j][i]+ " ");
             }
             System.out.println();
         }
+        System.out.println("--------------------------------");
     }
 
     /**
@@ -41,8 +49,40 @@ public class Maze {
      * @return 是否找到路
      */
     public static boolean getWay(int[][] map, int i, int j){
+        if (map[6][5] == 2) {
+            return true;
+        } else {
+            if (map[i][j] == 0) {
+                map[i][j] = 2;
+                //先向上走
+                if (getWay(map, i, j-1)) {
 
+                    return true;
+                    //再向下走
+                } else if (getWay(map, i, j+1)) {
 
-        return false;
+                    return true;
+                    //再向左走
+                } else if (getWay(map, i-1, j)) {
+
+                    return true;
+                    //再向右走
+                } else if (getWay(map, i+1, j)) {
+
+                    return true;
+                } else {
+                    //如果上面四种情况都走过了，那么说明此路不通，设置为3
+                    map[i][j] = 3;
+                    return false;
+                }
+            } else {
+                //如果当前位置不是0，那么就是1、2、3，说明要么是墙1，要么已经走过2，要么是死路一条3。就不需要再走
+                return false;
+            }
+        }
+    }
+
+    public void permutation(int [] array){
+
     }
 }
