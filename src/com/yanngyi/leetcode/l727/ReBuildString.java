@@ -1,4 +1,4 @@
-package com.yanngyi;
+package com.yanngyi.leetcode.l727;
 
 /**
  * @author yangyi
