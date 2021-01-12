@@ -4,16 +4,19 @@ import java.util.Arrays;
 
 /**
  * 希尔排序
+ *
  * @author yangyi
  */
 public class ShellSorting {
 
     public static void main(String[] args) {
-        int[] arr = {8,9,1,7,2,3,5,4,6,0};
+        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         int k = 2;
         k -= 1;
         System.out.println(k);
-        shellSort(arr);
+        shellSortMove(arr);
+        System.out.println("希尔排序第一轮" + Arrays.toString(arr));
+//        shellSort(arr);
 //        int halfLength = arr.length / 2;
 //        for (int j = 5-halfLength; j >= 0; j-=halfLength) {
 //            System.out.println(j-=halfLength);
@@ -22,15 +25,16 @@ public class ShellSorting {
 
     /**
      * 希尔排序交换法实现
+     *
      * @param arr
      */
-    public static void shellSort(int[] arr){
+    public static void shellSort(int[] arr) {
         int temp = 0;
         int halfLength = arr.length / 2;
         while (halfLength > 0) {
             for (int i = halfLength; i < arr.length; i++) {
                 //遍历各组中所有的元素（共halfLength组，每组有arr.length/halfLength个元素），当前组第一个元素与当前组的下一个元素的距离为halfLength
-                for (int j = i-halfLength; j >= 0; j-=halfLength) {
+                for (int j = i - halfLength; j >= 0; j -= halfLength) {
                     //如果当前组第一个元素大于当前组第二个元素，那就交换
                     if (arr[j] > arr[j + halfLength]) {
                         temp = arr[j];
@@ -43,7 +47,7 @@ public class ShellSorting {
             }
             halfLength = halfLength / 2;
         }
-        System.out.println("希尔排序第一轮"+Arrays.toString(arr));
+        System.out.println("希尔排序第一轮" + Arrays.toString(arr));
         //希尔排序的第一轮排序
         //将数组分成length / 2 组
 
@@ -97,5 +101,30 @@ public class ShellSorting {
 //        }
 //        //1，5，0，6，3，4，7，2，9，8
 //        System.out.println("希尔排序第三轮后"+Arrays.toString(arr));
+    }
+
+    /**
+     * 希尔排序交换式优化为移动式
+     *
+     * @param arr
+     */
+    public static void shellSortMove(int[] arr) {
+        //增量gap，并逐步的缩小增量
+        for (int gap = arr.length/2; gap > 0; gap /= 2) {
+            //从第gap个元素，诸葛对其所在的组进行直接插入排序
+            for (int i = gap; i < arr.length; i++) {
+                int j = i;
+                int temp = arr[j];
+                if (arr[j] < arr[j - gap]) {
+                    //这里只做比较，只有比较全部结束之后才做交换
+                    while (j - gap >= 0 && temp < arr[j - gap]) {
+                        arr[j] = arr[j-gap];
+                        j -= gap;
+                    }
+                    //当退出while循环后，就给temp找到了插入的位置
+                    arr[j] = temp;
+                }
+            }
+        }
     }
 }
