@@ -1,10 +1,10 @@
 package com.yanngyi.sxt.search;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 二分查找
  * @author yangyi
  */
 public class BinarySearch {
